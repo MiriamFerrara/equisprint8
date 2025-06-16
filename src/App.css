@@ -1,38 +1,800 @@
-.App {
+/* --- Stili globali e reset --- */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #b3e2f1;
+  color: #000;
   text-align: center;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* --- Header Band (Bandiera, Gara, Icona) --- */
+.header-band {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px 70px;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.header-band .left-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-band .flag {
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(to right, green 33.33%, white 33.33% 66.66%, red 66.66%);
+  margin-right: 20px;
+}
+
+.header-band .text {
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  color: #000;
+}
+
+.header-band .text:first-of-type {
+  margin-right: 5px;
+}
+
+.header-band .bold {
+  font-weight: bold;
+}
+
+.header-band .gara-status-group {
+  display: flex;
+  align-items: center;
+}
+
+.header-band .gara-in-corso {
+  color: green;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 15px;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+.header-band .icon {
+  width: 40px;
+  height: 40px;
+  background: url('./assets/icona.png') no-repeat center center;
+  background-size: contain;
+}
+
+/* --- Sezione Bottoni Inferiore (Vincite/Piazzato e Totalizzatore) --- */
+.bottom-section-row {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0;
+  gap: 0;
+}
+
+.bottom-section-row button {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
+  padding: 10px 20px;
+  text-align: center;
+  white-space: normal;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.bottom-section-row button:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.vincite-piazzato-button {
+  background-color: #e6d5a2;
+  color: #000;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 50%;
+  padding-left: 70px;
+}
+
+.vincite-piazzato-button .label {
+  font-weight: normal;
+  color: #333;
+  margin-right: 5px;
+}
+
+.vincite-piazzato-button .value {
+  font-weight: bold;
+  color: #000;
+}
+
+.totalizzatore-button {
+  background-color: #ffffc5;
+  color: #000;
+  flex: 1;
+  margin-left: 0;
+  padding-left: 30px;
+}
+
+/* --- Intestazione Principale --- */
+.logo-container {
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0 auto;
+}
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+@media (min-width: 768px) {
+  .logo-container {
+    max-width: 1400px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* --- Spazio Bianco --- */
+.spacer {
+  height: 40px;
+  background-color: white;
+}
+
+/* --- Benvenuto e Sottotesto --- */
+.benvenuto {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #000;
+}
+.highlight,
+.saldo {
+  color: #1E90FF;
+  font-weight: bold;
+}
+.sottotesto {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* --- Visualizza Card Cavalli --- */
+.cavalli {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+  max-width: 1000px;
+}
+.cavallo-card {
+  width: calc(20% - 15px);
+  background-color: #1E90FF;
+  box-shadow: 0 0 8px rgba(69, 90, 100, 0.7);
+  border-radius: 15px;
+  padding: 5px;
+  min-height: 150px;
+  color: white;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cavallo-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(69, 90, 100, 0.9);
+}
+.nome-cavallo {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: normal;
+}
+.barra {
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  width: 90%;
+  background-color: #87CEEB;
+}
+@media (max-width: 768px) {
+  .cavallo-card {
+    width: calc(50% - 15px);
+  }
+}
+@media (max-width: 480px) {
+  .cavallo-card {
+    width: 100%;
+  }
+}
+
+/* --- Sezione Scommesse (Giocata) --- */
+.giocata {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 20px;
+}
+.giocata-titolo {
+  font-size: 1.5rem;
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+.giocata-input-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin: 0;
+}
+.input-importo {
+  padding: 5px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 42%;
+}
+.input-importo:focus {
+  border-color: #ffaa33;
+  box-shadow: 0 0 10px rgba(255, 170, 51, 0.6);
+}
+.bottoni-riga,
+.bottoni-colonna {
+  display: flex;
+  width: 65%;
+  gap: 10px;
+  margin-top: 10px;
+}
+.bottoni-riga {
+  justify-content: center;
+}
+.bottoni-colonna {
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* --- Stili generali per i bottoni (base) --- */
+button {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: inherit;
+}
+button:hover {
+  transform: scale(1.05);
+}
+
+/* --- Modificatori di colore per i bottoni --- */
+.btn-verde {
+  background-color: #28a745;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.btn-verde:hover {
+  background-color: #3ed657;
+  color: #000;
+}
+.btn-blu {
+  padding: 20px 24px;
+  font-size: 22px;
+  background-color: #1E90FF;
+  color: white;
+  border-radius: 5px;
+}
+.btn-blu:hover {
+  box-shadow: 0 0 10px #ffaa33;
+}
+.btn-reset {
+  background-color: #dc3545;
+  color: white;
+}
+.btn-reset:hover {
+  background-color: #ff4d4d;
+}
+.altro-btn {
+  background-color: #444;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: 2px solid #ffaa33;
+  border-radius: 5px;
+}
+.altro-btn:hover {
+  background-color: #ffaa33;
+  color: #000;
 }
 
-@keyframes App-logo-spin {
+/* --- Messaggio di Conferma --- */
+.messaggio-conferma {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+.contenuto-messaggio {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: left;
+  max-width: 600px;
+  font-size: 23px;
+  line-height: 1.5;
+  color: #000;
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.4);
+  border: 3px solid #1E90FF;
+  font-weight: normal;
+  animation: zoomIn 0.3s ease-in-out;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+.contenuto-messaggio span {
+  color: #1E90FF;
+  font-weight: bold;
+}
+.btn-chiudi {
+  margin-top: 25px;
+  margin-right: 15px;
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #1E90FF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-chiudi:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #1E90FF;
+}
+
+/* --- Animazioni --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoomIn {
   from {
-    transform: rotate(0deg);
+    transform: scale(0.9);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    transform: scale(1);
+    opacity: 1;
   }
+}
+
+/* --- Stile Messaggio Esito --- */
+.titolo-messaggio {
+  font-size: 36px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+.titolo-span {
+  color: #1E90FF;
+  font-weight: bold;
+  font-size: 36px;
+}
+.esito-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px;
+}
+.messaggio-esito {
+  font-size: 26px;
+}
+.messaggio-esito-testo {
+  font-size: 26px;
+  color: #1E90FF;
+  font-weight: bold;
+}
+.titolo-span-esito {
+  color: #1E90FF;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+
+/* Stili per il contenitore principale del totalizzatore */
+.totalizzatore-list-container {
+  border-radius: 8px;
+  width: 100vw;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  left: 0;
+  margin-top: 0;
+  box-sizing: border-box; /* Importante per includere il padding nella larghezza totale */
+}
+/* Stili per la tabella (o griglia) del totalizzatore */
+.totalizzatore-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.totalizzatore-row {
+  display: flex;
+  align-items: center;
+  background-color: #ffffc5;
+  padding: 10px 120px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.totalizzatore-col {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Colonna Posizione e Icona Forma */
+.totalizzatore-pos {
+  flex: 0 0 60px; /* Larghezza fissa per la colonna posizione */
+  text-align: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.pos-number {
+  font-weight: bold;
+  font-size: 1.4em;
+  color: #333;
+}
+
+/* Icona della "forma" accanto al numero di posizione */
+.totalizzatore-pos .form-shape-icon {
+    width: 20px;
+    height: 20px;
+
+    background-color: #28a745; /* Colore verde */
+    border-radius: 50%; /* Per farlo circolare, se vuoi un quadrato togli questo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 1;
+    content: "▲"; /* Freccia in alto */
+}
+
+
+/* Colonna Informazioni Cavallo */
+.totalizzatore-info {
+  flex: 1; /* Prende lo spazio rimanente */
+  align-items: flex-start;
+}
+
+.nome-cavallo-totalizzatore {
+  font-weight: bold;
+  color: #0056b3; /* Blu scuro per il nome */
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
+
+.fantino-record {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.record {
+  font-weight: normal;
+  margin-left: 5px;
+  font-size: 0.85em; /* Leggermente più piccolo */
+}
+
+.stelle-form-stellaD {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.star-icon {
+  font-size: 0.9em; /* Dimensione delle stelle */
+  color: gold; /* Colore giallo per le stelle */
+}
+
+/* Icona della "forma" sotto il nome del fantino */
+.form-indicator {
+    width: 15px;
+    height: 15px;
+    background-color: #007bff; /* Blu per l'indicatore di forma */
+    border-radius: 3px;
+    display: inline-block; /* Assicurati che sia inline-block per stare accanto alle stelle */
+}
+
+.star-d-icon {
+  font-size: 0.9em; /* Dimensione della stella D */
+  color: #ffa500; /* Arancione per la stella D */
+}
+
+
+/* Colonna Quote Vincita */
+.totalizzatore-quote-vincita {
+  flex: 0 0 120px; /* Larghezza fissa */
+  text-align: center;
+  background-color: #b3e2f1;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+  margin-left: 10px; /* Spazio dalla colonna precedente */
+}
+
+/* Colonna Quote Piazzato */
+.totalizzatore-quote-piazzato {
+  flex: 0 0 120px; /* Larghezza fissa */
+  text-align: center;
+  background-color: #b3e2f1; /* Colore  come nell'immagine */
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.95em;
+  color: #333;
+  margin-left: 10px; /* Spazio dalla colonna precedente */
+}
+
+.min-max-quota {
+  line-height: 1.3; /* Spazio tra le linee min/max */
+}
+
+
+/* Media queries per responsività (opzionale ma consigliato) */
+@media (max-width: 768px) {
+  .totalizzatore-row {
+    flex-wrap: wrap; /* Permette agli elementi di andare a capo */
+    justify-content: center;
+    text-align: center;
+  }
+
+  .totalizzatore-col {
+    flex: 1 1 100%; /* Occupano tutta la larghezza su schermi piccoli */
+    margin: 5px 0;
+    padding: 5px;
+  }
+
+  .totalizzatore-pos {
+    flex-direction: row;
+    width: auto;
+    justify-content: center;
+  }
+
+  .totalizzatore-info {
+    order: -1; /* Mette le info in cima */
+  }
+
+  .totalizzatore-quote-vincita,
+  .totalizzatore-quote-piazzato {
+    flex: 1 1 calc(50% - 20px); /* 50% di larghezza meno gap */
+    margin: 5px;
+
+  }
+}
+
+
+
+/* Stili per il contenitore principale delle vincite/piazzati */
+.vincite-piazzati-list-container {
+    border-radius: 8px;
+    width: 100vw;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    box-sizing: border-box;
+
+}
+
+/* Stili per la tabella (o griglia) delle vincite/piazzati */
+.vincite-piazzati-table {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stili per le righe dell'header e dei dati */
+.vincite-piazzati-header-row,
+.vincite-piazzati-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 120px;
+    background-color: #ffffc5;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.vincite-piazzati-header-row {
+    background-color: #e6d5a2; /* Sfondo grigio chiaro per l'header */
+    font-weight: bold;
+    color: #333;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.vincite-piazzati-row {
+    background-color: #f4e3af;
+    transition: background-color 0.2s ease; /* Transizione al passaggio del mouse */
+}
+
+.vincite-piazzati-row:hover {
+    background-color: #f4e3af; /* Cambia colore al passaggio del mouse */
+}
+
+.vincite-piazzati-row:last-child {
+    border-bottom: none; /* Rimuovi il bordo inferiore dall'ultima riga */
+}
+
+
+/* Stili per le colonne */
+.vincite-piazzati-header-col,
+.vincite-piazzati-col {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; /* Allinea al centro di default */
+}
+
+/* Colonna Posizione e Trend */
+.vincite-piazzati-pos-info {
+    flex: 0 0 80px; /* Larghezza fissa */
+    text-align: center;
+    align-items: center;
+    flex-direction: row; /* Per allineare numero e icona trend (se presente) */
+    gap: 5px;
+}
+
+.vincite-piazzati-pos-number {
+    font-weight: bold;
+    font-size: 1.3em;
+     color: #333;
+}
+
+/* Colonna Nome Cavallo e Fantino */
+.vincite-piazzati-nome-fantino {
+    flex: 2; /* Prende più spazio */
+    align-items: flex-start; /* Allinea il testo a sinistra */
+}
+
+.nome-cavallo-vincite {
+  font-weight: bold;
+  color: #0056b3; /* Blu scuro per il nome */
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
+
+.fantino-vincite {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Colonna vuota per l'icona lista nell'header */
+.vincite-piazzati-header-row .vincite-piazzati-header-col:nth-child(3) {
+    flex: 0 0 50px; /* Larghezza fissa per l'icona lista */
+}
+
+/* Stili per le quote (Vincente, Piazzato 1-2, Piazzato 1-3) */
+.vincite-col-quota {
+    flex: 1; /* Distribuisce equamente lo spazio rimanente */
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #28a745; /* Verde per le quote */
+    position: relative; /* Per il triangolo */
+    text-align: center;
+}
+
+.vincite-piazzati-header-row .vincite-piazzati-header-col {
+    flex: 1; /* Distribuisce equamente le colonne dell'header */
+    text-align: center;
+}
+
+/* Triangolo verde nell'angolo delle quote */
+.green-corner-triangle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: 15px solid #28a745; /* Verde */
+    border-left: 15px solid transparent;
+    z-index: 1; /* Assicura che sia sopra il contenuto */
+}
+
+/* Media queries per responsività */
+@media (max-width: 768px) {
+    .vincite-piazzati-header-row,
+    .vincite-piazzati-row {
+        flex-wrap: wrap; /* Permette agli elementi di andare a capo */
+        padding: 10px;
+    }
+
+    .vincite-piazzati-header-col,
+    .vincite-piazzati-col {
+        flex: 1 1 100%; /* Occupano tutta la larghezza su schermi piccoli */
+        margin: 5px 0;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .vincite-piazzati-pos-info {
+        flex-direction: row;
+        width: auto;
+        justify-content: center;
+        flex: 1 1 auto; /* Permette che si restringa/espanda */
+    }
+
+    .vincite-piazzati-nome-fantino {
+        order: -1; /* Mette le info in cima */
+        flex: 1 1 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .vincite-col-quota {
+        flex: 1 1 calc(50% - 10px); /* 50% di larghezza meno gap su schermi piccoli */
+        margin: 5px;
+        font-size: 1em; /* Leggermente più piccolo su mobile */
+    }
+
+    .vincite-piazzati-header-row .vincite-piazzati-header-col:nth-child(3) {
+        display: none; /* Nasconde la colonna dell'icona lista nell'header su mobile */
+    }
+
+    /* Nasconde i triangoli verdi su mobile per semplificare il layout */
+    .green-corner-triangle::before {
+        display: none;
+    }
 }
