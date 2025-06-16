@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/equisprint8/static/css/main.42621790.css",
-    "main.js": "/equisprint8/static/js/main.6f90c8ef.js",
+    "main.css": "/equisprint8/static/css/main.5b14c551.css",
+    "main.js": "/equisprint8/static/js/main.3e49da93.js",
     "static/js/453.872b1ca9.chunk.js": "/equisprint8/static/js/453.872b1ca9.chunk.js",
     "static/media/logo.png": "/equisprint8/static/media/logo.1bdedd9c18bee0427d21.png",
     "static/media/icona.png": "/equisprint8/static/media/icona.7c1147019d553a2815e2.png",
     "static/media/horse.png": "/equisprint8/static/media/horse.151a46b49e27be90f5d8.png",
     "index.html": "/equisprint8/index.html",
-    "main.42621790.css.map": "/equisprint8/static/css/main.42621790.css.map",
-    "main.6f90c8ef.js.map": "/equisprint8/static/js/main.6f90c8ef.js.map",
+    "main.5b14c551.css.map": "/equisprint8/static/css/main.5b14c551.css.map",
+    "main.3e49da93.js.map": "/equisprint8/static/js/main.3e49da93.js.map",
     "453.872b1ca9.chunk.js.map": "/equisprint8/static/js/453.872b1ca9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.42621790.css",
-    "static/js/main.6f90c8ef.js"
+    "static/css/main.5b14c551.css",
+    "static/js/main.3e49da93.js"
   ]
 }
